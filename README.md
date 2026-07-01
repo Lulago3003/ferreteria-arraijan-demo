@@ -4,10 +4,11 @@ Demo de sitio web para presentar a Maximateriales, ferretería con 2 sucursales 
 
 ## Qué incluye
 - Hero con fotos reales de las 2 sucursales destacadas al entrar a la página.
-- Sección de servicios rápidos: cotización por WhatsApp, despacho de materiales y rutas.
+- Sección de "Más vendidos" con puertas, cemento, bloques, arena y pinturas destacadas.
 - Catálogo visual con 60+ productos de muestra, fotos referenciales, categorías, buscador y filtros.
 - Enfoque comercial en puertas de madera con diseños, bloques, cemento, arena, agregados, zinc, hierro, madera, plomería, eléctrico, pinturas por color y herramientas.
-- Botón de WhatsApp flotante y botón de cotización en cada producto.
+- Botón de WhatsApp flotante, compra rápida por WhatsApp y carrito demo para armar una cotización.
+- Carrito lateral con cantidades, total estimado y mensaje automático para enviar por WhatsApp.
 - Ofertas del mes orientadas a obra gris, puertas/cerraduras y despacho local.
 - Sección de sucursales con foto, dirección, horario, teléfono, mapa, Google Maps y Waze.
 - Diseño responsive para móvil, tablet y escritorio.

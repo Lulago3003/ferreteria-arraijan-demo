@@ -107,12 +107,35 @@ const PRODUCTS = [
   { name: "Nivel de burbuja", cat: "Herramientas", price: 9.75, unit: "unidad", badge: "Precisión", desc: "Para instalación de puertas, marcos y cerámica.", image: IMG.tools },
 ];
 
+const BEST_SELLER_NAMES = [
+  "Puerta Craftmaster 6 paneles blanca",
+  "Puerta de madera colonial 2 paneles",
+  "Bulto de cemento 42.5 kg",
+  "Bloque de cemento 6 pulgadas por ciento",
+  "Arena lavada",
+  "Pintura látex interior 1 galón",
+];
+
 const grid = document.getElementById("productGrid");
+const bestSellerGrid = document.getElementById("bestSellerGrid");
+const bestWhatsapp = document.getElementById("bestWhatsapp");
 const filtersEl = document.getElementById("categoryFilters");
 const searchInput = document.getElementById("searchInput");
 const emptyState = document.getElementById("emptyState");
+const cartToggle = document.getElementById("cartToggle");
+const cartClose = document.getElementById("cartClose");
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartCount = document.getElementById("cartCount");
+const cartItems = document.getElementById("cartItems");
+const cartEmpty = document.getElementById("cartEmpty");
+const cartTotal = document.getElementById("cartTotal");
+const cartWhatsapp = document.getElementById("cartWhatsapp");
+const cartClear = document.getElementById("cartClear");
+const openCartFromBest = document.getElementById("openCartFromBest");
 
 let activeCategory = "todos";
+let cart = [];
 
 function escapeHtml(value) {
   return String(value)
@@ -121,6 +144,49 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+function getProduct(productName) {
+  return PRODUCTS.find(product => product.name === productName);
+}
+
+function money(value) {
+  return `$${value.toFixed(2)}`;
+}
+
+function cartTotalValue() {
+  return cart.reduce((total, item) => {
+    const product = getProduct(item.name);
+    return total + ((product?.price || 0) * item.qty);
+  }, 0);
+}
+
+function buildBestSellerWhatsappLink() {
+  const products = BEST_SELLER_NAMES
+    .map(getProduct)
+    .filter(Boolean)
+    .map(product => `- ${product.name}`);
+  const text = encodeURIComponent(`Hola, quiero cotizar estos productos más vendidos:\n${products.join("\n")}`);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
+
+function buildCartWhatsappLink() {
+  if (!cart.length) {
+    const text = encodeURIComponent("Hola, quiero cotizar productos para mi obra.");
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  }
+
+  const lines = cart.map(item => {
+    const product = getProduct(item.name);
+    const unit = product?.unit || "unidad";
+    const lineTotal = product?.price ? ` - aprox. ${money(product.price * item.qty)}` : "";
+    return `- ${item.qty} x ${item.name} / ${unit}${lineTotal}`;
+  });
+
+  const text = encodeURIComponent(
+    `Hola, quiero comprar o cotizar estos productos:\n${lines.join("\n")}\nTotal estimado: ${money(cartTotalValue())}\nMe confirma disponibilidad y entrega en Arraiján.`
+  );
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
 function buildCategoryFilters() {
@@ -156,6 +222,122 @@ function colorSwatches(product) {
   `;
 }
 
+function renderBestSellers() {
+  if (!bestSellerGrid) return;
+
+  const products = BEST_SELLER_NAMES.map(getProduct).filter(Boolean);
+  bestSellerGrid.innerHTML = products.map(product => `
+    <article class="best-seller-card">
+      <div class="best-seller-media">
+        <img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <span>${escapeHtml(product.badge)}</span>
+      </div>
+      <div class="best-seller-body">
+        <p>${escapeHtml(product.cat)}</p>
+        <h3>${escapeHtml(product.name)}</h3>
+        <div class="best-seller-bottom">
+          <strong>${priceLabel(product)}</strong>
+          <div class="best-card-actions">
+            <a href="${waLink(product.name)}" target="_blank" rel="noopener">WhatsApp</a>
+            <button type="button" data-cart-add="${escapeHtml(product.name)}">Añadir</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  if (bestWhatsapp) {
+    bestWhatsapp.href = buildBestSellerWhatsappLink();
+  }
+}
+
+function openCart() {
+  cartPanel.classList.add("open");
+  cartPanel.setAttribute("aria-hidden", "false");
+  cartToggle.setAttribute("aria-expanded", "true");
+  cartOverlay.hidden = false;
+  cartOverlay.classList.add("open");
+}
+
+function closeCart() {
+  cartPanel.classList.remove("open");
+  cartPanel.setAttribute("aria-hidden", "true");
+  cartToggle.setAttribute("aria-expanded", "false");
+  cartOverlay.classList.remove("open");
+  cartOverlay.hidden = true;
+}
+
+function updateCartUI() {
+  const totalQty = cart.reduce((total, item) => total + item.qty, 0);
+  cartCount.textContent = totalQty;
+  cartToggle.classList.toggle("has-items", totalQty > 0);
+  cartEmpty.hidden = cart.length > 0;
+  cartItems.hidden = cart.length === 0;
+  cartTotal.textContent = money(cartTotalValue());
+  cartWhatsapp.href = buildCartWhatsappLink();
+
+  cartItems.innerHTML = cart.map(item => {
+    const product = getProduct(item.name);
+    if (!product) return "";
+
+    return `
+      <article class="cart-item">
+        <img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <div class="cart-item-main">
+          <h3>${escapeHtml(product.name)}</h3>
+          <p>${priceLabel(product)} / ${escapeHtml(product.unit)}</p>
+          <button type="button" class="cart-remove" data-cart-remove="${escapeHtml(item.name)}">Quitar</button>
+        </div>
+        <div class="cart-qty" aria-label="Cantidad">
+          <button type="button" data-cart-change="${escapeHtml(item.name)}" data-cart-delta="-1">-</button>
+          <span>${item.qty}</span>
+          <button type="button" data-cart-change="${escapeHtml(item.name)}" data-cart-delta="1">+</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function bumpCartButton() {
+  cartToggle.classList.remove("cart-bump");
+  void cartToggle.offsetWidth;
+  cartToggle.classList.add("cart-bump");
+}
+
+function addToCart(productName) {
+  const product = getProduct(productName);
+  if (!product) return;
+
+  const existing = cart.find(item => item.name === product.name);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name: product.name, qty: 1 });
+  }
+
+  updateCartUI();
+  bumpCartButton();
+}
+
+function changeCartQty(productName, delta) {
+  const item = cart.find(entry => entry.name === productName);
+  if (!item) return;
+
+  item.qty += delta;
+  cart = cart.filter(entry => entry.qty > 0);
+  updateCartUI();
+}
+
+function removeFromCart(productName) {
+  cart = cart.filter(item => item.name !== productName);
+  updateCartUI();
+}
+
+function clearCart() {
+  cart = [];
+  updateCartUI();
+}
+
 function renderProducts() {
   const query = searchInput.value.trim().toLowerCase();
 
@@ -183,7 +365,10 @@ function renderProducts() {
             <div class="p-price">${priceLabel(p)}</div>
             <span class="p-unit">/${escapeHtml(p.unit)}</span>
           </div>
-          <a class="p-quote" href="${waLink(p.name)}" target="_blank" rel="noopener">Cotizar</a>
+          <div class="p-actions">
+            <a class="p-quote" href="${waLink(p.name)}" target="_blank" rel="noopener">WhatsApp</a>
+            <button class="p-cart" type="button" data-cart-add="${escapeHtml(p.name)}">Añadir</button>
+          </div>
         </div>
       </div>
     </article>
@@ -214,5 +399,39 @@ document.querySelectorAll("#mainNav a").forEach(link => {
   });
 });
 
+document.addEventListener("click", (event) => {
+  const addButton = event.target.closest("[data-cart-add]");
+  if (addButton) {
+    addToCart(addButton.getAttribute("data-cart-add"));
+    return;
+  }
+
+  const qtyButton = event.target.closest("[data-cart-change]");
+  if (qtyButton) {
+    const delta = Number(qtyButton.getAttribute("data-cart-delta"));
+    changeCartQty(qtyButton.getAttribute("data-cart-change"), delta);
+    return;
+  }
+
+  const removeButton = event.target.closest("[data-cart-remove]");
+  if (removeButton) {
+    removeFromCart(removeButton.getAttribute("data-cart-remove"));
+  }
+});
+
+cartToggle.addEventListener("click", openCart);
+cartClose.addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+cartClear.addEventListener("click", clearCart);
+openCartFromBest.addEventListener("click", openCart);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && cartPanel.classList.contains("open")) {
+    closeCart();
+  }
+});
+
 buildCategoryFilters();
+renderBestSellers();
 renderProducts();
+updateCartUI();
