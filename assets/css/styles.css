@@ -436,6 +436,20 @@ a { color: inherit; text-decoration: none; }
   min-height: 42px;
   margin-bottom: 18px;
 }
+.color-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -4px 0 18px;
+}
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--swatch);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(26,26,26,.18);
+}
 .product-footer {
   margin-top: auto;
   display: flex;

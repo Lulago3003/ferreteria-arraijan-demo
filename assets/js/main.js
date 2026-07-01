@@ -11,10 +11,15 @@ const IMG = {
   blockWall: commonsImage("A building constructed with Concrete Masonry blocks.jpg"),
   paver: commonsImage("-2021-01-09 Reclaimed concrete paving blocks, Trimingham, Norfolk (1).JPG"),
   doorWood: commonsImage("Dorfkirche Sanitz (main door), 2025-04-20.jpg"),
+  doorWhite6: commonsImage("EFTA00002867-Pool-House - White six-panel door with black doorknob set in a light-colored frame against a plain wall.jpg"),
+  doorCarved: commonsImage("Door panel showing Astamangala in a Lalitpur street.jpg"),
+  doorPanel: commonsImage("Interior view of former living porch showing original wooden panel door at main entry, facing west. - Marine Barracks, Panama Canal, Officers' Quarters, 800' West of Bruja Road, HABS CZ,1-BALB.V,3B-14.tif"),
   doorSteel: commonsImage("Steel door panel.jpg"),
   doorLock: commonsImage("Door Knob with Lock USA.jpg"),
   doorHandle: commonsImage("Door handle.jpg"),
   cement: commonsImage("Portland cement CEM I 42,5 R (bag).jpg"),
+  blockStack: commonsImage("Close-Up of Stacked Concrete Blocks in Sunlight.jpg"),
+  sand: commonsImage("Pile of Sand for Building in Anambra State.jpg"),
   rebar: commonsImage("A bunch of rebar up close.jpg"),
   metalSheet: commonsImage("Grey galvanized corrugated striped slightly dusty steel metal sheet seamless surface texture.jpg"),
   plywood: commonsImage("Plywood.jpg"),
@@ -22,6 +27,7 @@ const IMG = {
   pvc: commonsImage("FlexibleRainPipe.JPG"),
   faucet: commonsImage("Grohe kitchen faucet veris 1.jpg"),
   paint: commonsImage("Paint bucket and brush.jpg"),
+  paintColors: commonsImage("Paint in cans and bottles (25c2ab72-006a-4aec-9562-329009d3a997).jpg"),
   tile: commonsImage("Modern ceramic tiles with wood appearance.jpg"),
   wire: commonsImage("Wooden electric wire coil.jpg"),
   drill: commonsImage("Drill-driver.JPG"),
@@ -32,6 +38,12 @@ const IMG = {
 const PRODUCTS = [
   { name: "Puerta metálica lisa", cat: "Puertas y Cerraduras", price: 89.00, unit: "unidad", badge: "Pedido frecuente", desc: "Para entradas, depósitos y proyectos de seguridad.", image: IMG.doorSteel },
   { name: "Puerta de madera interior", cat: "Puertas y Cerraduras", price: 74.50, unit: "unidad", badge: "Para hogar", desc: "Opción económica para habitaciones y remodelaciones.", image: IMG.doorWood },
+  { name: "Puerta de madera colonial 2 paneles", cat: "Puertas y Cerraduras", price: 79.99, unit: "unidad", badge: "Diseño colonial", desc: "Estilo clásico para habitaciones, oficinas y remodelaciones.", image: IMG.doorPanel },
+  { name: "Puerta Craftmaster 6 paneles blanca", cat: "Puertas y Cerraduras", price: 64.99, unit: "unidad", badge: "6 paneles", desc: "Diseño blanco tipo colonial, similar a modelos comunes en ferreterías de Panamá.", image: IMG.doorWhite6 },
+  { name: "Puerta de madera tallada decorativa", cat: "Puertas y Cerraduras", price: 145.00, unit: "unidad", badge: "Diseño bonito", desc: "Para mostrar una línea premium de puertas con detalle decorativo.", image: IMG.doorCarved },
+  { name: "Puerta entamborada lisa Okume", cat: "Puertas y Cerraduras", price: 49.95, unit: "unidad", badge: "Interior", desc: "Puerta liviana de uso interior para habitaciones y baños.", image: IMG.doorWood },
+  { name: "Puerta de madera natural con veta", cat: "Puertas y Cerraduras", price: 92.50, unit: "unidad", badge: "Acabado madera", desc: "Opción cálida para clientes que quieren acabado natural.", image: IMG.doorPanel },
+  { name: "Puerta plegable color chocolate", cat: "Puertas y Cerraduras", price: 46.99, unit: "unidad", badge: "Espacios pequeños", desc: "Ideal para closets, lavanderías y divisiones interiores.", image: IMG.doorWood },
   { name: "Cerradura pomo con llave", cat: "Puertas y Cerraduras", price: 14.95, unit: "unidad", badge: "Complemento", desc: "Cerradura básica para puertas interiores o exteriores.", image: IMG.doorLock },
   { name: "Manigueta para puerta", cat: "Puertas y Cerraduras", price: 18.75, unit: "unidad", badge: "Herraje", desc: "Herraje tipo palanca para puertas residenciales.", image: IMG.doorHandle },
   { name: "Bisagra reforzada 3 pulgadas", cat: "Puertas y Cerraduras", price: 2.25, unit: "unidad", badge: "Por caja", desc: "Ideal para instalación de puertas nuevas.", image: IMG.doorHandle },
@@ -40,9 +52,17 @@ const PRODUCTS = [
   { name: "Bloque de concreto 4 pulgadas", cat: "Bloques y Cemento", price: 0.75, unit: "unidad", badge: "Por volumen", desc: "Para divisiones livianas y remodelaciones.", image: IMG.block },
   { name: "Bloque de concreto 6 pulgadas", cat: "Bloques y Cemento", price: 0.85, unit: "unidad", badge: "Más vendido", desc: "Bloque estándar para paredes y cerramientos.", image: IMG.block },
   { name: "Bloque de concreto 8 pulgadas", cat: "Bloques y Cemento", price: 1.10, unit: "unidad", badge: "Obra pesada", desc: "Mayor resistencia para muros y estructuras.", image: IMG.blockWall },
+  { name: "Bloque de cemento 6 pulgadas por ciento", cat: "Bloques y Cemento", price: 85.00, unit: "100 unidades", badge: "Por ciento", desc: "Presentación ideal para cotizaciones de construcción y muros.", image: IMG.blockStack },
+  { name: "Bloque de cemento 4 pulgadas por ciento", cat: "Bloques y Cemento", price: 75.00, unit: "100 unidades", badge: "Por ciento", desc: "Para divisiones internas y proyectos livianos.", image: IMG.blockStack },
   { name: "Bulto de cemento 42.5 kg", cat: "Bloques y Cemento", price: 9.90, unit: "bulto", badge: "Stock diario", desc: "Cemento para mezcla, repello y fundaciones.", image: IMG.cement },
+  { name: "Cemento gris uso general", cat: "Bloques y Cemento", price: 9.75, unit: "bulto", badge: "Obra gris", desc: "Para pega de bloques, pisos, columnas y reparaciones.", image: IMG.cement },
   { name: "Adoquín de concreto", cat: "Bloques y Cemento", price: 0.95, unit: "unidad", badge: "Exterior", desc: "Para patios, accesos y áreas de circulación.", image: IMG.paver },
   { name: "Mortero preparado", cat: "Bloques y Cemento", price: 7.50, unit: "saco", badge: "Listo para mezcla", desc: "Para pega de bloques, repello y reparaciones.", image: IMG.cement },
+  { name: "Arena lavada", cat: "Arena y Agregados", price: 38.00, unit: "yarda", badge: "Para mezcla", desc: "Arena limpia para concreto, repello y pega de bloques.", image: IMG.sand },
+  { name: "Arena gruesa", cat: "Arena y Agregados", price: 34.00, unit: "yarda", badge: "Construcción", desc: "Para mezclas de obra gris y trabajos de albañilería.", image: IMG.sand },
+  { name: "Arena fina para repello", cat: "Arena y Agregados", price: 36.00, unit: "yarda", badge: "Acabado", desc: "Arena más fina para repello y terminaciones.", image: IMG.sand },
+  { name: "Piedra cuarta", cat: "Arena y Agregados", price: 42.00, unit: "yarda", badge: "Concreto", desc: "Agregado para concreto, bases y trabajos estructurales.", image: IMG.sand },
+  { name: "Gravilla para construcción", cat: "Arena y Agregados", price: 40.00, unit: "yarda", badge: "Agregado", desc: "Material de apoyo para mezclas, drenajes y rellenos.", image: IMG.sand },
 
   { name: "Varilla corrugada 3/8 pulgadas", cat: "Hierro y Techo", price: 4.95, unit: "unidad", badge: "Obra gris", desc: "Acero de refuerzo para columnas y vigas.", image: IMG.rebar },
   { name: "Varilla corrugada 1/2 pulgada", cat: "Hierro y Techo", price: 7.80, unit: "unidad", badge: "Alta demanda", desc: "Refuerzo para losas, columnas y zapatas.", image: IMG.rebar },
@@ -69,7 +89,13 @@ const PRODUCTS = [
   { name: "Tomacorriente doble", cat: "Eléctrico", price: 2.95, unit: "unidad", badge: "Acabado", desc: "Repuesto para viviendas, oficinas y locales.", image: IMG.wire },
   { name: "Cajilla eléctrica plástica", cat: "Eléctrico", price: 1.25, unit: "unidad", badge: "Instalación", desc: "Caja para interruptores o tomacorrientes.", image: IMG.wire },
 
-  { name: "Pintura látex interior 1 galón", cat: "Pintura y Acabados", price: 22.00, unit: "galón", badge: "Colores", desc: "Pintura para paredes interiores y retoques.", image: IMG.paint },
+  { name: "Pintura látex interior 1 galón", cat: "Pintura y Acabados", price: 22.00, unit: "galón", badge: "Colores", desc: "Pintura para paredes interiores y retoques.", image: IMG.paintColors, colors: [{ name: "Blanco", hex: "#f7f5ee" }, { name: "Arena", hex: "#c8ad7f" }, { name: "Gris", hex: "#aeb4b8" }, { name: "Azul", hex: "#5b8fc9" }] },
+  { name: "Pintura acrílica color arena", cat: "Pintura y Acabados", price: 24.50, unit: "galón", badge: "Color Panamá", desc: "Tono neutral muy usado para interiores y fachadas.", image: IMG.paintColors, colors: [{ name: "Arena", hex: "#c8ad7f" }, { name: "Crema", hex: "#ead9b5" }, { name: "Café claro", hex: "#b38867" }] },
+  { name: "Pintura acrílica blanco mate", cat: "Pintura y Acabados", price: 21.95, unit: "galón", badge: "Interior", desc: "Color base para paredes, techos y retoques rápidos.", image: IMG.paint, colors: [{ name: "Blanco", hex: "#f8f8f2" }, { name: "Hueso", hex: "#ede4d1" }] },
+  { name: "Pintura color gris perla", cat: "Pintura y Acabados", price: 25.00, unit: "galón", badge: "Moderno", desc: "Acabado sobrio para casas, oficinas y locales.", image: IMG.paintColors, colors: [{ name: "Gris perla", hex: "#c7ccd1" }, { name: "Grafito", hex: "#555b60" }] },
+  { name: "Pintura color azul cielo", cat: "Pintura y Acabados", price: 25.00, unit: "galón", badge: "Color vivo", desc: "Color fresco para habitaciones y fachadas tropicales.", image: IMG.paintColors, colors: [{ name: "Azul cielo", hex: "#74b7e6" }, { name: "Azul intenso", hex: "#2f68ad" }] },
+  { name: "Pintura color verde menta", cat: "Pintura y Acabados", price: 25.00, unit: "galón", badge: "Decorativo", desc: "Tono suave para interiores, locales y áreas comunes.", image: IMG.paintColors, colors: [{ name: "Verde menta", hex: "#8ed4b0" }, { name: "Verde hoja", hex: "#3f8d4e" }] },
+  { name: "Pintura rojo ladrillo exterior", cat: "Pintura y Acabados", price: 26.50, unit: "galón", badge: "Exterior", desc: "Color fuerte para fachadas, detalles y muros.", image: IMG.paintColors, colors: [{ name: "Rojo ladrillo", hex: "#a33b32" }, { name: "Terracota", hex: "#c4623d" }] },
   { name: "Sellador acrílico", cat: "Pintura y Acabados", price: 16.50, unit: "galón", badge: "Preparación", desc: "Base para mejorar el acabado de pintura.", image: IMG.paint },
   { name: "Rodillo y bandeja", cat: "Pintura y Acabados", price: 7.40, unit: "juego", badge: "Kit", desc: "Herramienta básica para pintar paredes.", image: IMG.paint },
   { name: "Cerámica tipo madera", cat: "Pintura y Acabados", price: 11.90, unit: "m²", badge: "Acabado", desc: "Piso decorativo para interiores.", image: IMG.tile },
@@ -118,11 +144,24 @@ function priceLabel(product) {
   return `Desde $${product.price.toFixed(2)}`;
 }
 
+function colorSwatches(product) {
+  if (!product.colors?.length) return "";
+
+  return `
+    <div class="color-swatches" aria-label="Colores disponibles">
+      ${product.colors.map(color => `
+        <span class="color-swatch" style="--swatch:${escapeHtml(color.hex)}" title="${escapeHtml(color.name)}"></span>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderProducts() {
   const query = searchInput.value.trim().toLowerCase();
 
   const filtered = PRODUCTS.filter(p => {
-    const haystack = [p.name, p.cat, p.desc, p.badge].join(" ").toLowerCase();
+    const colorNames = p.colors?.map(color => color.name).join(" ") || "";
+    const haystack = [p.name, p.cat, p.desc, p.badge, colorNames].join(" ").toLowerCase();
     const matchesCategory = activeCategory === "todos" || p.cat === activeCategory;
     const matchesQuery = haystack.includes(query);
     return matchesCategory && matchesQuery;
@@ -138,6 +177,7 @@ function renderProducts() {
         <div class="p-cat">${escapeHtml(p.cat)}</div>
         <h3>${escapeHtml(p.name)}</h3>
         <p class="p-desc">${escapeHtml(p.desc)}</p>
+        ${colorSwatches(p)}
         <div class="product-footer">
           <div>
             <div class="p-price">${priceLabel(p)}</div>
