@@ -35,7 +35,8 @@ const PRODUCTS = [
   { name: "Arena lavada (bulto)", cat: "Construcción", price: 4.20, emoji: "🏗️" },
 ];
 
-const WHATSAPP_NUMBER = "50761234567";
+// WhatsApp de Maximateriales Sucursal 2 (visible en su rótulo): 6107-3702
+const WHATSAPP_NUMBER = "50761073702";
 
 const grid = document.getElementById("productGrid");
 const filtersEl = document.getElementById("categoryFilters");
