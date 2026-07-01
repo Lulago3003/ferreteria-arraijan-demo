@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es-PA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferretería El Progreso | Arraiján, Panamá</title>
+<meta name="description" content="Ferretería El Progreso en Arraiján: herramientas, pintura, plomería, eléctrico y materiales de construcción. Cotiza por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-icon">🔧</span>
+      <span class="brand-text">Ferretería <strong>El Progreso</strong></span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#testimonios">Clientes</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-whatsapp header-cta" target="_blank" rel="noopener"
+       href="https://wa.me/50761234567?text=Hola%2C%20quiero%20hacer%20una%20consulta">
+      <svg viewBox="0 0 32 32" class="icon-wa"><path d="M16.001 3C9.383 3 4 8.373 4 15c0 2.31.66 4.47 1.8 6.31L4 29l7.86-1.76A11.95 11.95 0 0 0 16 27c6.617 0 12-5.373 12-12S22.618 3 16.001 3zm0 21.7c-1.99 0-3.86-.55-5.46-1.5l-.39-.23-4.66 1.04 1.03-4.53-.25-.4A9.7 9.7 0 0 1 5.3 15c0-5.9 4.8-10.7 10.7-10.7S26.7 9.1 26.7 15 21.9 24.7 16 24.7z"/><path d="M21.6 17.7c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.73-1.63-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.87 1.21 3.07c.15.2 2.09 3.2 5.08 4.48.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+      Cotizar ahora
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">🇵🇦 Arraiján, Panamá — desde 1998</span>
+      <h1>Todo para tu obra y tu hogar, <span>al mejor precio.</span></h1>
+      <p>Herramientas, pintura, plomería, eléctrico y materiales de construcción. Atención rápida, entrega en Arraiján y alrededores, y cotizaciones directo por WhatsApp.</p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+        <a href="https://wa.me/50761234567?text=Hola%2C%20quiero%20cotizar%20unos%20productos" target="_blank" rel="noopener" class="btn btn-whatsapp">Cotizar por WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>25+</strong><span>años sirviendo a Arraiján</span></div>
+        <div><strong>800+</strong><span>productos en tienda</span></div>
+        <div><strong>4.8★</strong><span>calificación de clientes</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card card-1">🔩 Tornillería</div>
+      <div class="hero-card card-2">🎨 Pintura</div>
+      <div class="hero-card card-3">🪛 Herramientas</div>
+      <div class="hero-card card-4">🚰 Plomería</div>
+      <div class="hero-blob"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATÁLOGO ===== -->
+<section class="catalogo" id="catalogo">
+  <div class="container">
+    <div class="section-head">
+      <h2>Catálogo de productos</h2>
+      <p>Ejemplo de cómo se vería tu inventario, organizado y fácil de buscar.</p>
+    </div>
+
+    <div class="catalog-controls">
+      <div class="search-box">
+        <span>🔎</span>
+        <input type="text" id="searchInput" placeholder="Buscar producto, ej: martillo, pintura, tubo...">
+      </div>
+      <div class="category-filters" id="categoryFilters">
+        <button class="chip active" data-cat="todos">Todos</button>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+    <p class="empty-state" id="emptyState" hidden>No encontramos productos con ese criterio. Prueba con otra palabra.</p>
+  </div>
+</section>
+
+<!-- ===== OFERTAS ===== -->
+<section class="ofertas" id="ofertas">
+  <div class="container">
+    <div class="section-head light">
+      <h2>Ofertas del mes</h2>
+      <p>Espacio ideal para promociones que cambian cada semana o mes.</p>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <span class="offer-tag">-15%</span>
+        <h3>🪚 Herramientas eléctricas</h3>
+        <p>En taladros, sierras y esmeriladoras seleccionadas.</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-tag">2x1</span>
+        <h3>🎨 Pintura interior</h3>
+        <p>Lleva 2 galones al precio de 1 en colores seleccionados.</p>
+      </div>
+      <div class="offer-card">
+        <span class="offer-tag">Envío gratis</span>
+        <h3>🧱 Materiales de construcción</h3>
+        <p>En compras mayores a $100 dentro de Arraiján.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UBICACIÓN ===== -->
+<section class="ubicacion" id="ubicacion">
+  <div class="container ubicacion-inner">
+    <div class="ubicacion-info">
+      <h2>Visítanos</h2>
+      <ul class="info-list">
+        <li><span>📍</span> Vía Interamericana, Arraiján, Panamá</li>
+        <li><span>🕗</span> Lun – Sáb: 7:00 am – 6:00 pm &nbsp;|&nbsp; Dom: 8:00 am – 1:00 pm</li>
+        <li><span>📞</span> +507 6123-4567</li>
+        <li><span>✉️</span> contacto@ferreteriaelprogreso.com</li>
+      </ul>
+      <a href="https://wa.me/50761234567" target="_blank" rel="noopener" class="btn btn-whatsapp">Escríbenos por WhatsApp</a>
+    </div>
+    <div class="ubicacion-map">
+      <iframe
+        title="Mapa Ferretería El Progreso en Arraiján"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-79.68%2C8.93%2C-79.62%2C8.97&layer=mapnik&marker=8.95%2C-79.65"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <div class="section-head">
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testimonial-grid">
+      <blockquote class="testimonial">
+        <p>"Siempre encuentro lo que necesito para mis proyectos. Atención rápida y buenos precios."</p>
+        <cite>— Roberto M., contratista</cite>
+      </blockquote>
+      <blockquote class="testimonial">
+        <p>"Pedí una cotización por WhatsApp y me la entregaron el mismo día. Excelente servicio."</p>
+        <cite>— Yaritza G., cliente frecuente</cite>
+      </blockquote>
+      <blockquote class="testimonial">
+        <p>"La ferretería de confianza en Arraiján. Llevo años comprando aquí."</p>
+        <cite>— Carlos A., vecino de la comunidad</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER / CONTACTO ===== -->
+<footer class="site-footer" id="contacto">
+  <div class="container footer-inner">
+    <div>
+      <div class="brand brand-footer">
+        <span class="brand-icon">🔧</span>
+        <span class="brand-text">Ferretería <strong>El Progreso</strong></span>
+      </div>
+      <p>Todo para tu obra y tu hogar, en el corazón de Arraiján.</p>
+    </div>
+    <div>
+      <h4>Enlaces</h4>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#ubicacion">Ubicación</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="https://wa.me/50761234567" target="_blank" rel="noopener">WhatsApp: +507 6123-4567</a>
+      <a href="mailto:contacto@ferreteriaelprogreso.com">contacto@ferreteriaelprogreso.com</a>
+    </div>
+  </div>
+  <p class="footer-note">© 2026 Ferretería El Progreso — Sitio demo creado para fines de presentación.</p>
+</footer>
+
+<!-- ===== WHATSAPP FLOTANTE ===== -->
+<a class="wa-float" href="https://wa.me/50761234567?text=Hola%2C%20quiero%20más%20información" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.383 3 4 8.373 4 15c0 2.31.66 4.47 1.8 6.31L4 29l7.86-1.76A11.95 11.95 0 0 0 16 27c6.617 0 12-5.373 12-12S22.618 3 16.001 3zm0 21.7c-1.99 0-3.86-.55-5.46-1.5l-.39-.23-4.66 1.04 1.03-4.53-.25-.4A9.7 9.7 0 0 1 5.3 15c0-5.9 4.8-10.7 10.7-10.7S26.7 9.1 26.7 15 21.9 24.7 16 24.7z"/><path d="M21.6 17.7c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.73-1.63-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.87 1.21 3.07c.15.2 2.09 3.2 5.08 4.48.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+</a>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
