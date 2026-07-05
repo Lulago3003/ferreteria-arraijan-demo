@@ -3,11 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maximateriales | Arraiján, Panamá</title>
+<title>Maximateriales | Ferretería en Arraiján, Panamá</title>
 <meta name="description" content="Maximateriales en Arraiján: herramientas, pintura, plomería, eléctrico y materiales de construcción, con 2 sucursales. Cotiza por WhatsApp.">
+<meta name="theme-color" content="#d71920">
+<link rel="icon" type="image/png" href="LOGO.png">
+
+<!-- Vista previa al compartir el link (WhatsApp, redes) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Maximateriales — Ferretería en Arraiján, Panamá">
+<meta property="og:description" content="Todo para tu obra y tu hogar: bloques, cemento, puertas, pintura y más. 2 sucursales en Arraiján. Cotiza por WhatsApp.">
+<meta property="og:image" content="https://lulago3003.github.io/ferreteria-arraijan-demo/assets/images/sucursal-1.jpg">
+<meta property="og:url" content="https://lulago3003.github.io/ferreteria-arraijan-demo/">
+<meta property="og:locale" content="es_PA">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260701-5">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260705-1">
 </head>
 <body>
 
@@ -68,6 +80,21 @@
   </div>
 </section>
 
+<!-- ===== MARCAS ===== -->
+<section class="brands" aria-label="Marcas que distribuimos">
+  <div class="container brands-inner">
+    <span class="brands-label">Distribuidores de marcas reconocidas</span>
+    <ul class="brands-list">
+      <li>TRUPER</li>
+      <li>LANCO</li>
+      <li>TOTAL</li>
+      <li>CORONA</li>
+      <li>SIKA</li>
+      <li>3M</li>
+    </ul>
+  </div>
+</section>
+
 <!-- ===== MÁS VENDIDOS ===== -->
 <section class="best-sellers" id="mas-vendidos">
   <div class="container best-sellers-inner">
@@ -104,6 +131,7 @@
       </div>
     </div>
 
+    <p class="results-count" id="resultsCount" aria-live="polite"></p>
     <div class="product-grid" id="productGrid"></div>
     <p class="empty-state" id="emptyState" hidden>No encontramos productos con ese criterio. Prueba con otra palabra.</p>
   </div>
@@ -132,6 +160,38 @@
         <h3>Despacho dentro de Arraiján</h3>
         <p>En compras mayores a $100 dentro de Arraiján.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="section-head">
+      <h2>¿Por qué comprar en Maximateriales?</h2>
+      <p>Más que una ferretería: un aliado para tu obra de principio a fin.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <span class="service-icon">🚚</span>
+        <h3>Entrega a domicilio</h3>
+        <p>Llevamos bloques, cemento, arena y materiales pesados hasta tu obra en Arraiján y alrededores.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">💬</span>
+        <h3>Cotización por WhatsApp</h3>
+        <p>Envía tu lista de materiales y recibe tu cotización el mismo día, sin salir de casa.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">📦</span>
+        <h3>Precios por volumen</h3>
+        <p>Descuentos especiales para contratistas y compras por ciento o por yarda.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">🛠️</span>
+        <h3>Asesoría en tu compra</h3>
+        <p>Te ayudamos a calcular cantidades y elegir el material correcto para tu proyecto.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -284,6 +344,10 @@
   </div>
 </aside>
 
-<script src="assets/js/main.js?v=20260701-5"></script>
+<!-- ===== TOAST + VOLVER ARRIBA ===== -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Volver arriba">↑</button>
+
+<script src="assets/js/main.js?v=20260705-1"></script>
 </body>
 </html>

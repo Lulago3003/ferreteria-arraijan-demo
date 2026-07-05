@@ -134,8 +134,28 @@ const cartWhatsapp = document.getElementById("cartWhatsapp");
 const cartClear = document.getElementById("cartClear");
 const openCartFromBest = document.getElementById("openCartFromBest");
 
+const CART_STORAGE_KEY = "maximateriales-cart";
+
 let activeCategory = "todos";
-let cart = [];
+let cart = loadCart();
+
+function loadCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_STORAGE_KEY));
+    if (!Array.isArray(saved)) return [];
+    return saved.filter(item => item && typeof item.name === "string" && Number.isFinite(item.qty) && item.qty > 0);
+  } catch {
+    return [];
+  }
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch {
+    // Navegación privada o almacenamiento lleno: el carrito sigue funcionando en memoria.
+  }
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -268,6 +288,7 @@ function closeCart() {
 }
 
 function updateCartUI() {
+  saveCart();
   const totalQty = cart.reduce((total, item) => total + item.qty, 0);
   cartCount.textContent = totalQty;
   cartToggle.classList.toggle("has-items", totalQty > 0);
@@ -317,6 +338,19 @@ function addToCart(productName) {
 
   updateCartUI();
   bumpCartButton();
+  showToast(`✅ ${product.name} añadido al carrito`);
+}
+
+// ===== Toast =====
+const toastEl = document.getElementById("toast");
+let toastTimer = null;
+
+function showToast(message) {
+  if (!toastEl) return;
+  toastEl.textContent = message;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
 }
 
 function changeCartQty(productName, delta) {
@@ -375,6 +409,16 @@ function renderProducts() {
   `).join("");
 
   emptyState.hidden = filtered.length !== 0;
+
+  const resultsCount = document.getElementById("resultsCount");
+  if (resultsCount) {
+    const catLabel = activeCategory === "todos" ? "" : ` en ${activeCategory}`;
+    resultsCount.textContent = filtered.length
+      ? `Mostrando ${filtered.length} de ${PRODUCTS.length} productos${catLabel}`
+      : "";
+  }
+
+  applyReveal(grid.querySelectorAll(".product-card"));
 }
 
 filtersEl.addEventListener("click", (e) => {
@@ -431,7 +475,55 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// ===== Animación al hacer scroll =====
+const revealObserver = ("IntersectionObserver" in window)
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 })
+  : null;
+
+function applyReveal(elements) {
+  if (!revealObserver) return;
+  elements.forEach((el, index) => {
+    if (el.classList.contains("in-view")) return;
+    el.classList.add("reveal");
+    el.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+    revealObserver.observe(el);
+  });
+}
+
+// ===== Volver arriba =====
+const backToTop = document.getElementById("backToTop");
+if (backToTop) {
+  window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("visible", window.scrollY > 700);
+  }, { passive: true });
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// ===== Respaldo si falla la imagen de un producto =====
+const FALLBACK_IMAGE = "data:image/svg+xml," + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#fff0f1"/><text x="200" y="150" text-anchor="middle" font-family="Arial" font-size="60">🧱</text></svg>'
+);
+
+document.addEventListener("error", (event) => {
+  const img = event.target;
+  if (img.tagName === "IMG" && img.src !== FALLBACK_IMAGE) {
+    img.src = FALLBACK_IMAGE;
+  }
+}, true);
+
 buildCategoryFilters();
 renderBestSellers();
 renderProducts();
 updateCartUI();
+applyReveal(document.querySelectorAll(
+  ".best-seller-card, .service-card, .offer-card, .branch-card, .testimonial, .section-head"
+));
